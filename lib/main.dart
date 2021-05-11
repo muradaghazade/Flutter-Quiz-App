@@ -6,7 +6,24 @@ void main() {
 
 // void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return MyAppState();
+  }
+}
+
+class MyAppState extends State<MyApp> {
+  var qIndex = 0;
+
+  void answerQuestion() {
+    setState(() {
+      qIndex = qIndex + 1;
+    });
+    print(qIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
     var questions = ["Whats your fav color?", "Whats your fav car"];
@@ -17,18 +34,18 @@ class MyApp extends StatelessWidget {
         ),
         body: Column(
           children: [
-            Text('This is the question!'),
+            Text(questions[qIndex]),
             RaisedButton(
               child: Text('1 answer'),
-              onPressed: null,
+              onPressed: answerQuestion,
             ),
             RaisedButton(
               child: Text('2 answer'),
-              onPressed: null,
+              onPressed: answerQuestion,
             ),
             RaisedButton(
               child: Text('3 answer'),
-              onPressed: null,
+              onPressed: answerQuestion,
             ),
           ],
         ),
